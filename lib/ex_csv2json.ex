@@ -10,10 +10,11 @@ defmodule ExCsv2Json do
   Convert given input to json
   """
   def convert(input, output) do
-    json = input
-      |> File.stream!
+    json =
+      input
+      |> File.stream!()
       |> CSV.decode(headers: true)
-      |> Poison.encode!
+      |> Poison.encode!()
 
     File.write!(output, json, [:write, :utf8])
   end

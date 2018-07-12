@@ -18,18 +18,21 @@ defmodule Mix.Tasks.Csv2json do
 
   @doc false
   def run(args) do
-    {opts, _, _} = OptionParser.parse(args,
-      switches: [infile: :string, outfile: :string],
-      aliases: [i: :infile, o: :outfile]
-    )
+    {opts, _, _} =
+      OptionParser.parse(
+        args,
+        switches: [infile: :string, outfile: :string],
+        aliases: [i: :infile, o: :outfile]
+      )
 
     if is_nil(opts[:outfile]) or is_nil(opts[:infile]) do
-      Mix.shell.error "Input or output file not specified"
+      Mix.shell().error("Input or output file not specified")
       System.halt(1)
     end
+
     opts[:infile]
     |> ExCsv2Json.convert(opts[:outfile])
 
-    Mix.shell.info "Converted #{opts[:infile]} to #{opts[:outfile]}!"
+    Mix.shell().info("Converted #{opts[:infile]} to #{opts[:outfile]}!")
   end
 end

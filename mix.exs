@@ -2,15 +2,17 @@ defmodule ExCsv2json.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ex_csv2json,
-     version: "0.1.0",
-     elixir: "~> 1.2",
-     description: "Module and mix task to convert csv to json",
-     source_url: "https://github.com/techgaun/ex_csv2json",
-     package: package,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :ex_csv2json,
+      version: "0.1.0",
+      elixir: "~> 1.2",
+      description: "Module and mix task to convert csv to json",
+      source_url: "https://github.com/techgaun/ex_csv2json",
+      package: package(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -31,7 +33,7 @@ defmodule ExCsv2json.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:poison, "~> 2.0 or ~> 1.0"},
+      {:poison, "~> 3.1"},
       {:csv, "~> 1.4.2"}
     ]
   end
